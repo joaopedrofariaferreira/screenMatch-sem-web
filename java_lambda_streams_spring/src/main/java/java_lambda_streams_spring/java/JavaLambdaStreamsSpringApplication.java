@@ -1,9 +1,6 @@
 package java_lambda_streams_spring.java;
 
-import java_lambda_streams_spring.java.model.DadosEpisodio;
-import java_lambda_streams_spring.java.service.ConsumindoAPI;
-import java_lambda_streams_spring.java.service.ConverteDados;
-import java_lambda_streams_spring.java.model.DadosSerie;
+import java_lambda_streams_spring.java.principal.Principal;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,21 +14,18 @@ public class JavaLambdaStreamsSpringApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		var consumindoAPI = new ConsumindoAPI();
-		var json = consumindoAPI.obterDados("https://omdbapi.com/?t=Dexter&y=2006&plot=full&apikey=b05cfd54");
-		System.out.println(json);
-		var conversor = new ConverteDados();
-		DadosSerie dados = conversor.obterDados(json,DadosSerie.class);
-		System.out.println(dados);
-		json = consumindoAPI.obterDados("https://omdbapi.com/?t=Dexter&y=2006&plot=full&apikey=b05cfd54");
-		DadosEpisodio dadosEpisodio = conversor.obterDados(json, DadosEpisodio.class);
-		System.out.println(dadosEpisodio);
+		Principal principal = new Principal();
+		principal.exibirMenu();
+
+		/*List<DadosTemporada> listaDeTemporadas = new ArrayList<>();
 
 		for (int i = 1; i <= dados.totalDeTemporadas(); i++){
+			json = consumindoAPI.obterDados("https://omdbapi.com/?t=Dexter&y=2006&plot=full&apikey=b05cfd54&season="+i);
+			DadosTemporada dadosTemporada = conversor.obterDados(json, DadosTemporada.class);
+			listaDeTemporadas.add(dadosTemporada);
 
 		}
-		/*// é possivel trazer imagens tambem
-		var json = consumindoAPI.obterDados(INSERIR ENDEREÇO DA IMAGEM);
-		System.out.println(json)*/;
+		listaDeTemporadas.forEach(System.out::println);*/
+
 	}
 }
